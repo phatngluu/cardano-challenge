@@ -1,91 +1,85 @@
-# Generate policy script
-Suppose you're at `challenge1` directory. Let's execute below commands to create minting policy script:
+# Introduction
+In this solution, I will show **how ERC20 is implemented** with Cardano.
+Functionalities are:
+- dfg
+
+
+Prerequisites:
+- `cardano-node` is running and synced with Testnet.
+- `cardano-cli` is installed.
+- create a new address with `gen_address.sh` and fund it with faucet.
+
+Please note that, I use `cardano-cli` to create and deploy minting policy, create transaction, query balance. Please refer to the [README](../README.md) of the root of this repo to set up the prerequisites.
+
+# Minting policy & deploy to testnet
+Minting policy is like a smart contract. It is used to mint or burn tokens.
+## Generate minting policy script
+Suppose you're opening terminal at `challenge1` directory. To generate to create minting policy script, run:
 ```bash
-mkdir policy
+# Working directory: challenge1
+./gen_policy.sh
 
-# Generate keys for minting policy
-cardano-cli address key-gen \
---verification-key-file policy/policy.vkey \
---signing-key-file policy/policy.skey
-
-# Create empty policy script
-touch policy/policy.script && echo "" > policy/policy.script
-
-# Generate policy script with contents
-echo "{" >> policy/policy.script 
-echo "  \"keyHash\": \"$(cardano-cli address key-hash --payment-verification-key-file policy/policy.vkey)\"," >> policy/policy.script 
-echo "  \"type\": \"sig\"" >> policy/policy.script 
-echo "}" >> policy/policy.script
+# Check outputs
+ls policy
+# policy.script  policy.skey  policy.vkey
 ```
+Only person who has the `policy.skey` and `policy.vkey` can sign and verify the transaction to mint new tokens.
 
-We now have script that defines the **policy verification key** as a witness to **sign** the minting transaction. Only person who has the `policy.skey` can sign the transaction to mint token.
+## Submit minting policy to the network
+In this step, you need an address that has fund to submit transaction. I have prepare an address `payment2` that has fund to test. Let's query the fund (UTXOs) of this address:
 
-# Submit minting policy to the network
-In this step, you need an address that has fund to submit transaction. Navigate to this repository README to create new address and get your fund.
-After you go get your fund in an address, you have this UTXO:
-```
-                           TxHash                                 TxIx        Amount
---------------------------------------------------------------------------------------
-dc6c8f062fa611701f24e890aefa89e096ecffa6ae6230a5135d5db31e14b1d1     0        100000000 lovelace + TxOutDatumHashNone
-```
-We can move forward to submit the minting policy script.
 ```bash
-# Generate policy ID from the policy script
-cardano-cli transaction policyid --script-file ./policy/policy.script >> policy/policyID
+# Working directory: challenge1
+cardano-cli query utxo --address $(cat ../common/payment2.addr) --testnet-magic 1097911063
 
-# Variables
-Testnet="testnet-magic 1097911063"
-TokenName="CERC20"
-TokenAmount="10000000" # 10 milions
-SenderAddress=$(cat ../common/payment1.addr)
-TxHash="dc6c8f062fa611701f24e890aefa89e096ecffa6ae6230a5135d5db31e14b1d1"
-TxIx="0"
-Funds="100000000"
-PolicyId=$(cat policy/policyID)
-Fee="0"
-Output="0"
+# Example result
+#                            TxHash                                 TxIx        Amount
+# --------------------------------------------------------------------------------------
+# c0feddc565e3fe7c9c8b0bcae155e9dc6583fa52577175e340211d7e70ec0956     0        1000000000 lovelace + TxOutDatumHashNone
+```
 
-# Build transaction - if this failed, please check above variable
-cardano-cli transaction build-raw \
---fee $Fee \
---tx-in $TxHash#$TxIx \
---tx-out $SenderAddress+$Output+"$TokenAmount $PolicyId.$TokenName" \
---mint="$TokenAmount $PolicyId.$TokenName" \
---minting-script-file policy/policy.script \
---out-file CERC20_Tx.raw
+We can move forward to submit the minting policy script by running `deploy_policy.sh`. In terminal run:
+```bash
+# ./deploy_policy.sh SenderAddress SenderSigningKeyFile TxHash TxIx Amount_lovelace
+./deploy_policy.sh "../common/payment2.addr" "../common/payment2.skey" c0feddc565e3fe7c9c8b0bcae155e9dc6583fa52577175e340211d7e70ec0956 0 1000000000
+```
 
-# Calculate fee again
-Fee=$(cardano-cli transaction calculate-min-fee --tx-body-file CERC20_Tx.raw --tx-in-count 1 --tx-out-count 1 --witness-count 2 --$Testnet --protocol-params-file ../common/protocol.json | cut -d " " -f1)
-
-# Recalculate output
-Output=$(expr $Funds - $Fee)
-
-# Rebuild transaction with fee
-cardano-cli transaction build-raw \
---fee $Fee \
---tx-in $TxHash#$TxIx \
---tx-out $SenderAddress+$Output+"$TokenAmount $PolicyId.$TokenName" \
---mint="$TokenAmount $PolicyId.$TokenName" \
---minting-script-file policy/policy.script \
---out-file CERC20_Tx.raw
-
-# Sign tx
-cardano-cli transaction sign  \
---signing-key-file ../common/payment1.skey  \
---signing-key-file policy/policy.skey  \
---$Testnet --tx-body-file CERC20_Tx.raw  \
---out-file CERC20_Tx.signed
-
-# Submit transaction
-cardano-cli transaction submit --tx-file CERC20_Tx.signed --$Testnet
-
+## Check the minted assets
+```bash
 # Check the minted assets
-cardano-cli query utxo --address $(cat ../common/payment1.addr) --testnet-magic 1097911063
-                           TxHash                                 TxIx        Amount
---------------------------------------------------------------------------------------
-6e990787e2404e839b159c8ceacb588c42231c7fbcbaf2374296cf26179e6807     0        99818307 lovelace + 10000000 4fc7e62895d4bab83d87153e5a99c2c77cadd7654ebe4399950019bd.CERC20 + TxOutDatumHashNone
+cardano-cli query utxo --address $(cat ../common/payment2.addr) --testnet-magic 1097911063
+#                            TxHash                                 TxIx        Amount
+# --------------------------------------------------------------------------------------
+# 69875830540ee3dff88464cc6fb50d2c3f7b0c235b6366ab10afc121f012fbbc     0        999818307 lovelace + 10000000 885004fc0e0e6f593878fc61a150ab2672cd04270b7218aae5afc9b8.CERC20 + TxOutDatumHashNone
 ```
-Check with the explorer: https://testnet.cardanoscan.io/transaction/6e990787e2404e839b159c8ceacb588c42231c7fbcbaf2374296cf26179e6807?tab=tokenmint
 
-The script policy CERC20: https://testnet.cardanoscan.io/tokenPolicy/4fc7e62895d4bab83d87153e5a99c2c77cadd7654ebe4399950019bd
-![img](../img/Screen%20Shot%202021-10-24%20at%2000.24.04.png)
+# ERC20 verification
+## Check with the explorer
+My deployed minting policy CERC20: [885004fc0e0e6f593878fc61a150ab2672cd04270b7218aae5afc9b8](https://testnet.cardanoscan.io/tokenPolicy/885004fc0e0e6f593878fc61a150ab2672cd04270b7218aae5afc9b8) (click to view with Cardano blockchain explorer, it's a bit slow).
+![](../img/Screen%20Shot%202021-10-24%20at%2000.24.04.png)
+
+# Token details
+Check in explorer: 
+[885004fc0e0e6f593878fc61a150ab2672cd04270b7218aae5afc9b8434552433230](https://testnet.cardanoscan.io/token/885004fc0e0e6f593878fc61a150ab2672cd04270b7218aae5afc9b8434552433230?address=addr_test1vzdxjtkg5p9wphgnezpjpvdd496p0w7rs5lfhy8atjwh94cf34m4l)
+![](../img/Screen%20Shot%202021-10-27%20at%2001.02.40.png)
+# Token transfer
+Check `payment` UTXO:
+```bash
+cardano-cli query utxo --address $(cat ../common/payment2.addr) --testnet-magic 1097911063
+#                            TxHash                                 TxIx        Amount
+# --------------------------------------------------------------------------------------
+# 4220a8e5b0cef0e9543001cc3f4c5128726d81376a444316d32c27f3aabb8a0c     1        989640002 lovelace + 9999999 885004fc0e0e6f593878fc61a150ab2672cd04270b7218aae5afc9b8.CERC20 + TxOutDatumHashNone
+```
+
+Transfer 10 token CERC20 from `payment2` to `payment1`.
+```bash
+# ./transfer.sh SenderAddress SenderSigningKeyFile TxHash TxIx Funds TotalToken PolicyId TransferTokenAmount
+./transfer.sh "../common/payment1.addr" "../common/payment2.addr" "../common/payment2.skey" 4220a8e5b0cef0e9543001cc3f4c5128726d81376a444316d32c27f3aabb8a0c 1 989640002 9999999 885004fc0e0e6f593878fc61a150ab2672cd04270b7218aae5afc9b8 10
+```
+See the transaction on explorer: https://testnet.cardanoscan.io/transaction/a6142b7ffe0b6e1e54deaa6977dcf3203d1eec2e438676c08eda3e1593cc050a
+# ERC20 Use-cases
+- Burn token
+- Transfer token (as transfer Ada)
+- Total supply
+- Token name
+- Balance of
