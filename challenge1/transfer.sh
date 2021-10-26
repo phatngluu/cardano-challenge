@@ -33,9 +33,9 @@ cardano-cli transaction build-raw \
 --tx-in $TxHash#$TxIx \
 --tx-out $ReceiverAddress+$MinimumLovelace+"$TransferTokenAmount $PolicyId.CERC20" \
 --tx-out $SenderAddress+$Remaining+"$(expr $TotalToken - $TransferTokenAmount) $PolicyId.CERC20" \
---out-file Transfer_Tx.raw
+--out-file tx/Transfer_Tx.raw
 
-Fee=$(cardano-cli transaction calculate-min-fee --tx-body-file Transfer_Tx.raw --tx-in-count 1 --tx-out-count 2 --witness-count 1 --testnet-magic 1097911063 --protocol-params-file ../common/protocol.json | cut -d " " -f1)
+Fee=$(cardano-cli transaction calculate-min-fee --tx-body-file tx/Transfer_Tx.raw --tx-in-count 1 --tx-out-count 2 --witness-count 1 --testnet-magic 1097911063 --protocol-params-file ../common/protocol.json | cut -d " " -f1)
 
 Remaining=$(expr $Funds - $MinimumLovelace - $Fee)
 echo "Remaining: " $Remaining
@@ -45,12 +45,12 @@ cardano-cli transaction build-raw \
 --tx-in $TxHash#$TxIx \
 --tx-out $ReceiverAddress+$MinimumLovelace+"$TransferTokenAmount $PolicyId.CERC20" \
 --tx-out $SenderAddress+$Remaining+"$(expr $TotalToken - $TransferTokenAmount) $PolicyId.CERC20" \
---out-file Transfer_Tx.raw
+--out-file tx/Transfer_Tx.raw
 
 cardano-cli transaction sign \
 --signing-key-file $SenderSigningKeyFile \
 --testnet-magic 1097911063 \
---tx-body-file Transfer_Tx.raw \
---out-file Transfer_Tx.signed
+--tx-body-file tx/Transfer_Tx.raw \
+--out-file tx/Transfer_Tx.signed
 
-cardano-cli transaction submit --tx-file  Transfer_Tx.signed --testnet-magic 1097911063
+cardano-cli transaction submit --tx-file  tx/Transfer_Tx.signed --testnet-magic 1097911063

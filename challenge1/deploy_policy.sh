@@ -26,10 +26,10 @@ cardano-cli transaction build-raw \
 --tx-out $SenderAddress+$Output+"$TokenAmount $PolicyId.$TokenName" \
 --mint="$TokenAmount $PolicyId.$TokenName" \
 --minting-script-file policy/policy.script \
---out-file CERC20_Tx.raw
+--out-file tx/CERC20_Tx.raw
 
 # Calculate actual fee
-Fee=$(cardano-cli transaction calculate-min-fee --tx-body-file CERC20_Tx.raw --tx-in-count 1 --tx-out-count 1 --witness-count 2 $Testnet --protocol-params-file ../common/protocol.json | cut -d " " -f1)
+Fee=$(cardano-cli transaction calculate-min-fee --tx-body-file tx/CERC20_Tx.raw --tx-in-count 1 --tx-out-count 1 --witness-count 2 $Testnet --protocol-params-file ../common/protocol.json | cut -d " " -f1)
 
 # Recalculate output value
 Output=$(expr $Funds - $Fee)
@@ -41,14 +41,14 @@ cardano-cli transaction build-raw \
 --tx-out $SenderAddress+$Output+"$TokenAmount $PolicyId.$TokenName" \
 --mint="$TokenAmount $PolicyId.$TokenName" \
 --minting-script-file policy/policy.script \
---out-file CERC20_Tx.raw
+--out-file tx/CERC20_Tx.raw
 
 # Sign tx
 cardano-cli transaction sign  \
 --signing-key-file $SenderSigningKeyFile  \
 --signing-key-file policy/policy.skey  \
 $Testnet --tx-body-file CERC20_Tx.raw  \
---out-file CERC20_Tx.signed
+--out-file tx/CERC20_Tx.signed
 
 # Submit transaction
-cardano-cli transaction submit --tx-file CERC20_Tx.signed $Testnet
+cardano-cli transaction submit --tx-file tx/CERC20_Tx.signed $Testnet
