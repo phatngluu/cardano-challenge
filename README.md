@@ -35,3 +35,16 @@ cardano-cli query utxo --address $(cat common/payment1.addr) --testnet-magic 109
 dc6c8f062fa611701f24e890aefa89e096ecffa6ae6230a5135d5db31e14b1d1     0        100000000 lovelace + TxOutDatumHashNone
 ```
 **Note**: Please notice that TxHash. You can jump back to Challenge 1.
+
+# Running Plutus repo
+```bash
+git clone plutus
+cd plutus
+git checkout tags/alonzo/rc-2
+nix-shell
+```
+
+# Install `jq` for Ubuntu
+```bash
+sudo apt install jq
+```
