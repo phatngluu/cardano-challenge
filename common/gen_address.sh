@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Args:
+# - address name
+
 AddressName=$1
 
 cardano-cli address key-gen \
