@@ -3,7 +3,7 @@ In this solution, I will show **how ERC20 is implemented** with Cardano.
 Functionalities are:
 - Token minting
 - Transfer token
-- Balance query
+- Balance query (natively supported)
 
 Prerequisites:
 - `cardano-node` is running and synced with Testnet.
@@ -15,7 +15,7 @@ Please note that, I use `cardano-cli` to create and deploy minting policy, creat
 # Minting policy & deploy to testnet
 Minting policy is like a smart contract. It is used to mint or burn tokens.
 ## Generate minting policy script
-Suppose you're opening terminal at `challenge1` directory. To generate to create minting policy script, run:
+Suppose you're opening terminal at `challenge1` directory. To generate minting policy script, run:
 ```bash
 # Working directory: challenge1
 ./gen_policy.sh
