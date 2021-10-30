@@ -63,7 +63,7 @@ My deployed minting policy CERC20: [885004fc0e0e6f593878fc61a150ab2672cd04270b72
 Check in explorer: 
 [885004fc0e0e6f593878fc61a150ab2672cd04270b7218aae5afc9b8434552433230](https://testnet.cardanoscan.io/token/885004fc0e0e6f593878fc61a150ab2672cd04270b7218aae5afc9b8434552433230?address=addr_test1vzdxjtkg5p9wphgnezpjpvdd496p0w7rs5lfhy8atjwh94cf34m4l)
 ![](../img/Screen%20Shot%202021-10-27%20at%2001.02.40.png)
-## Token transfer
+## Balance query
 Check `payment` UTXO:
 ```bash
 cardano-cli query utxo --address $(cat ../common/payment2.addr) --testnet-magic 1097911063
@@ -72,6 +72,7 @@ cardano-cli query utxo --address $(cat ../common/payment2.addr) --testnet-magic 
 # 4220a8e5b0cef0e9543001cc3f4c5128726d81376a444316d32c27f3aabb8a0c     1        989640002 lovelace + 9999999 885004fc0e0e6f593878fc61a150ab2672cd04270b7218aae5afc9b8.CERC20 + TxOutDatumHashNone
 ```
 
+## Token transfer
 Transfer 10 token CERC20 from `payment2` to `payment1`.
 ```bash
 # ./transfer.sh SenderAddress SenderSigningKeyFile TxHash TxIx Funds TotalToken PolicyId TransferTokenAmount
