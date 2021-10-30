@@ -1,8 +1,9 @@
 # Introduction
 In this solution, I will show **how ERC20 is implemented** with Cardano.
 Functionalities are:
-- dfg
-
+- Token minting
+- Transfer token
+- Balance query
 
 Prerequisites:
 - `cardano-node` is running and synced with Testnet.
@@ -58,11 +59,11 @@ cardano-cli query utxo --address $(cat ../common/payment2.addr) --testnet-magic 
 My deployed minting policy CERC20: [885004fc0e0e6f593878fc61a150ab2672cd04270b7218aae5afc9b8](https://testnet.cardanoscan.io/tokenPolicy/885004fc0e0e6f593878fc61a150ab2672cd04270b7218aae5afc9b8) (click to view with Cardano blockchain explorer, it's a bit slow).
 ![](../img/Screen%20Shot%202021-10-24%20at%2000.24.04.png)
 
-# Token details
+## Token details
 Check in explorer: 
 [885004fc0e0e6f593878fc61a150ab2672cd04270b7218aae5afc9b8434552433230](https://testnet.cardanoscan.io/token/885004fc0e0e6f593878fc61a150ab2672cd04270b7218aae5afc9b8434552433230?address=addr_test1vzdxjtkg5p9wphgnezpjpvdd496p0w7rs5lfhy8atjwh94cf34m4l)
 ![](../img/Screen%20Shot%202021-10-27%20at%2001.02.40.png)
-# Token transfer
+## Balance query
 Check `payment` UTXO:
 ```bash
 cardano-cli query utxo --address $(cat ../common/payment2.addr) --testnet-magic 1097911063
@@ -71,15 +72,10 @@ cardano-cli query utxo --address $(cat ../common/payment2.addr) --testnet-magic 
 # 4220a8e5b0cef0e9543001cc3f4c5128726d81376a444316d32c27f3aabb8a0c     1        989640002 lovelace + 9999999 885004fc0e0e6f593878fc61a150ab2672cd04270b7218aae5afc9b8.CERC20 + TxOutDatumHashNone
 ```
 
+## Token transfer
 Transfer 10 token CERC20 from `payment2` to `payment1`.
 ```bash
 # ./transfer.sh SenderAddress SenderSigningKeyFile TxHash TxIx Funds TotalToken PolicyId TransferTokenAmount
 ./transfer.sh "../common/payment1.addr" "../common/payment2.addr" "../common/payment2.skey" 4220a8e5b0cef0e9543001cc3f4c5128726d81376a444316d32c27f3aabb8a0c 1 989640002 9999999 885004fc0e0e6f593878fc61a150ab2672cd04270b7218aae5afc9b8 10
 ```
 See the transaction on explorer: https://testnet.cardanoscan.io/transaction/a6142b7ffe0b6e1e54deaa6977dcf3203d1eec2e438676c08eda3e1593cc050a
-# ERC20 Use-cases
-- Burn token
-- Transfer token (as transfer Ada)
-- Total supply
-- Token name
-- Balance of
