@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# Generate policy ID from the policy script
-rm -f policy/policyID
-cardano-cli transaction policyid --script-file ./policy/policy.script >> policy/policyID
-
 # Assign variables from script arguments
 SenderAddress=$(cat $1)
 SenderSigningKeyFile=$2
