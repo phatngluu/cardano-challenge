@@ -1,5 +1,16 @@
 #!/bin/bash
 
+# Arguments
+# - receiver address file
+# - sender address file
+# - sender signing key file
+# - tx hash
+# - tx index 
+# - available lovelace of tx 
+# - total available amount of tokens in tx 
+# - policy id which contains token
+# - the amount of token to be transfered
+
 # Assign variables from script arguments
 ReceiverAddress=$(cat $1)
 SenderAddress=$(cat $2)

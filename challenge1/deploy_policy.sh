@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# Arguments
+# - sender address file
+# - sender signing key file
+# - tx hash
+# - tx index
+# - available lovelace of tx
+
 # Assign variables from script arguments
 SenderAddress=$(cat $1)
 SenderSigningKeyFile=$2
