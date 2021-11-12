@@ -1,9 +1,10 @@
 # Challenge description
-This is a challenge that extends the original Lobster Challenge: 
+This is a challenge that extends the original ![Lobster Challenge](https://github.com/input-output-hk/lobster-challenge)
 
 # Build Plutus Haskell code
-Enter Nix shell
-At the root folder: `cabal build`
+- Clone plutus repo. Checkout tag: alonzo/rc-2
+- Enter Nix shell
+- Go to the root folder which contains this readme file: `cabal build`
 
 # Build Plutus Haskell code to .plutus core
 At the root folder:
