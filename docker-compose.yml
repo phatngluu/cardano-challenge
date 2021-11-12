@@ -4,7 +4,9 @@ services:
   cardano-node:
     image: inputoutput/cardano-node:1.30.1
     environment:
-      NETWORK:
+      NETWORK: testnet
+      CARDANO_NODE_SOCKET_PATH: /ipc/node.socket
+      MAGIC: --testnet-magic 1097911063
     volumes:
       - node-${NETWORK}-db:/data
       - node-ipc:/ipc
