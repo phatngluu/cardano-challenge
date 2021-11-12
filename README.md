@@ -1,3 +1,6 @@
+# Cardano Challenge hosted by Spores Network
+This Github repo is a submission for this challenge: https://github.com/Spores-Labs/CardanoChallenge
+
 # Prerequisites
 - `cardano-node` and `cardano-cli` must be installed. Challenge solutions use testnet.
 - Prepare an address and get fund for it.
