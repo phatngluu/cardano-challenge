@@ -2,7 +2,7 @@
 This Github repo is a submission for this challenge: https://github.com/Spores-Labs/CardanoChallenge
 
 # Prerequisites
-- `cardano-node` and `cardano-cli` must be installed. Challenge solutions use testnet.
+- `cardano-node` and `cardano-wallet` services are required to query, deploy scripts and submit transactions on Cardano network. At the root directory of this repo, run following shell command to spin up those services: `NETWORK=testnet docker-compose up`.
 - Prepare an address and get fund for it.
 
 # Fetch the fee tariff
