@@ -9,9 +9,9 @@ bodyFile=lobster-tx-body.01
 outFile=lobster-tx.01
 nftPolicyFile="nft-mint-policy.plutus"
 nftPolicyId=$(./policyid.sh $nftPolicyFile)
-# Serialize LobsterNFT to hexadecimal: 4c6f62737465725072696d654e4654
+# Serialize PrimeNFT to hexadecimal: 5072696d654e4654
 # https://www.rapidtables.com/convert/number/ascii-to-hex.html
-value="1 $nftPolicyId.4c6f62737465725072696d654e4654"
+value="1 $nftPolicyId.5072696d654e4654"
 walletAddr=$(cat $2)
 
 echo "utxo: $1"
