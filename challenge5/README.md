@@ -20,8 +20,8 @@ cabal run plutus-lobster 4c6f62737465724e4654 4c6f6273746572436f756e746572 4c6f6
 
 # Build `apiOtherMintScript` and `apiNFTMintScript` to Plutus Core
 # utxo (must has ADA only):
-#    8c5749e16f23aa5e6db2ef9fd2e94b15257c282b990605657836471a15a0af76#0 (payment4.addr)
-cabal run plutus-lobster-tokens 8c5749e16f23aa5e6db2ef9fd2e94b15257c282b990605657836471a15a0af76#0
+#    14865d34c6141f445dde0965f1ef79b31de2ca4e909d289792c8051357ff5ffa#0 (payment4.addr)
+cabal run plutus-lobster-tokens 14865d34c6141f445dde0965f1ef79b31de2ca4e909d289792c8051357ff5ffa#0
 ```
 
 # Deploy files
@@ -33,7 +33,8 @@ cabal run plutus-lobster-tokens 8c5749e16f23aa5e6db2ef9fd2e94b15257c282b99060565
 
 # Minting NFT
 # UTXO that has ADA only
-./lobster-mint-nft.sh fa9e752f989018915bdf732fc5909190a2fb497c18282bd11cada9b555d7809a#0 ../../common/payment4.addr ../../common/payment4.skey
+#    14865d34c6141f445dde0965f1ef79b31de2ca4e909d289792c8051357ff5ffa#0 (payment4.addr)
+./lobster-mint-nft.sh 14865d34c6141f445dde0965f1ef79b31de2ca4e909d289792c8051357ff5ffa#0 ../../common/payment4.addr ../../common/payment4.skey
 
 
 ```
