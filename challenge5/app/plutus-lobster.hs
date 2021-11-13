@@ -8,11 +8,11 @@ import Cardano.PlutusLobster.LobsterScript
 
 main :: IO ()
 main = do
-    [nftSymbol, otherSymbol, seed', nameCount', voteCount'] <- getArgs
+    [nftSymbol, counterSymbol, voteSymbol, seed', nameCount', voteCount'] <- getArgs
     let seed      = read seed'
         nft       = AssetClass (fromString nftSymbol,   nftTokenName)
-        counter   = AssetClass (fromString otherSymbol, counterTokenName)
-        votes     = AssetClass (fromString otherSymbol, votesTokenName)
+        counter   = AssetClass (fromString counterSymbol, counterTokenName)
+        votes     = AssetClass (fromString voteSymbol, votesTokenName)
         nameCount = read nameCount'
         voteCount = read voteCount'
         lp          = LobsterParams
