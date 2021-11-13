@@ -8,6 +8,7 @@
 #   old counter
 #   new counter
 #   old votes
+#   node socket path
 
 export CARDANO_NODE_SOCKET_PATH=node.socket
 
@@ -46,6 +47,7 @@ echo "new counter: $6"
 echo "increaseValue: $increaseValue"
 echo "old votes: $7"
 echo "new votes: $newVotes"
+export CARDANO_NODE_SOCKET_PATH=$8
 echo "node.socket: $CARDANO_NODE_SOCKET_PATH"
 echo
 
