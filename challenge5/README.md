@@ -46,11 +46,11 @@ cd scripts
 ./lobster-mint-nft.sh 9768394e6055d9ae18dddbb5d0ddc17bec8fb9fef06a6890aa6d4de2cf777b10#0 ../../common/payment4.addr ../../common/payment4.skey
 
 # Deploy lobster script
-#   utxo (NFT) : 0f08ced0888de4d7c4319096f719eaece0c60203a041ac592ea49dac6fbfc426#1 (payment4.addr)
-#   utxo (collateral): 0f08ced0888de4d7c4319096f719eaece0c60203a041ac592ea49dac6fbfc426#0
+#   utxo (NFT) : 23b748a6e0fc3f8fd64e3e0094af41bf42b174a7863313576564ae3eccb5da1e#1 (payment4.addr)
+#   utxo (collateral): 23b748a6e0fc3f8fd64e3e0094af41bf42b174a7863313576564ae3eccb5da1e#0
 #   wallet address file: ../../common/payment4.addr
 #   signing key file ../../common/payment4.skey
-./lobster-deploy.sh 0f08ced0888de4d7c4319096f719eaece0c60203a041ac592ea49dac6fbfc426#1 0f08ced0888de4d7c4319096f719eaece0c60203a041ac592ea49dac6fbfc426#0 ../../common/payment4.addr ../../common/payment4.skey
+./lobster-deploy.sh 23b748a6e0fc3f8fd64e3e0094af41bf42b174a7863313576564ae3eccb5da1e#1 23b748a6e0fc3f8fd64e3e0094af41bf42b174a7863313576564ae3eccb5da1e#0 ../../common/payment4.addr ../../common/payment4.skey
 ```
 
 # Contribution (Test functionalities)
