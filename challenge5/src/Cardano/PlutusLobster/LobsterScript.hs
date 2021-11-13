@@ -118,7 +118,7 @@ mkLobsterValidator lp _ _ ctx =
     traceIfFalse "not prime"               (increase `elem` primeNumbers) &&
     if oldVotes < lpVoteCount lp then
         traceIfFalse "counter increase too small" (increase >= 1)                                                        &&
-        traceIfFalse "counter increase too large" (increase <= 100)
+        traceIfFalse "counter increase too large" (increase <= 1000)
     else
         traceIfFalse "wrong counter value"        (newCounter == ((lpSeed lp + oldCounter) `modInteger` lpNameCount lp))
   where
