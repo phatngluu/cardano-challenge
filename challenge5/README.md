@@ -36,6 +36,12 @@ cabal run plutus-lobster-tokens 14865d34c6141f445dde0965f1ef79b31de2ca4e909d2897
 #    14865d34c6141f445dde0965f1ef79b31de2ca4e909d289792c8051357ff5ffa#0 (payment4.addr)
 ./lobster-mint-nft.sh 14865d34c6141f445dde0965f1ef79b31de2ca4e909d289792c8051357ff5ffa#0 ../../common/payment4.addr ../../common/payment4.skey
 
+# Deploy lobster script
+#   utxo (NFT) : 0f08ced0888de4d7c4319096f719eaece0c60203a041ac592ea49dac6fbfc426#1 (payment4.addr)
+#   utxo (collateral): 0f08ced0888de4d7c4319096f719eaece0c60203a041ac592ea49dac6fbfc426#0
+#   wallet address file: ../../common/payment4.addr
+#   signing key file ../../common/payment4.skey
+./lobster-deploy.sh 0f08ced0888de4d7c4319096f719eaece0c60203a041ac592ea49dac6fbfc426#1 0f08ced0888de4d7c4319096f719eaece0c60203a041ac592ea49dac6fbfc426#0 ../../common/payment4.addr ../../common/payment4.skey
 
 ```
 
