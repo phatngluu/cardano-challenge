@@ -66,9 +66,9 @@ mkNFTPolicy tn utxo _ ctx = traceIfFalse "UTxO not consumed"   hasUTxO          
         _               -> False
 
 nftTokenName, counterTokenName, votesTokenName :: TokenName
-nftTokenName = "LobsterNFT"
-counterTokenName = "LobsterCounter"
-votesTokenName = "LobsterVotes"
+nftTokenName = "PrimeNFT"
+counterTokenName = "PrimeCounter"
+votesTokenName = "PrimeVotes"
 
 nftPolicy :: TxOutRef -> Scripts.MintingPolicy
 nftPolicy utxo = mkMintingPolicyScript $
