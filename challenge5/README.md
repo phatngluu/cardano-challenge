@@ -6,10 +6,10 @@ This is a challenge that extends the original ![Lobster Challenge](https://githu
 - Enter Nix shell
 - Go to the root folder which contains this readme file: `cabal build`
 
-# Build Plutus Haskell code to .plutus core
+# Build Plutus Haskell to Plutus Core with parameters
 At the root folder:
 ```bash
-# Build LobsterVoteCountScript to Plutus Core
+# Build `apiLobsterScript` to Plutus Core
 # nftSymbol: hexa serialized - 4c6f62737465724e4654 (LobsterNFT)
 # counterSymbol: hexa serialized - 4c6f6273746572436f756e746572 (LobsterCounter)
 # voteSymbol: hexa serialized - 4c6f6273746572566f746573 (LobsterVotes)
@@ -18,10 +18,10 @@ At the root folder:
 # total votes: number - 500
 cabal run plutus-lobster 4c6f62737465724e4654 4c6f6273746572436f756e746572 4c6f6273746572566f746573 1999 1219 500
 
-# Build LobsterTokens to PlutusCore
-# address payment4.addr
-# utxo: fa9e752f989018915bdf732fc5909190a2fb497c18282bd11cada9b555d7809a#0
-cabal run plutus-lobster-tokens fa9e752f989018915bdf732fc5909190a2fb497c18282bd11cada9b555d7809a#0
+# Build `apiOtherMintScript` and `apiNFTMintScript` to Plutus Core
+# utxo (must has ADA only):
+#    8c5749e16f23aa5e6db2ef9fd2e94b15257c282b990605657836471a15a0af76#0 (payment4.addr)
+cabal run plutus-lobster-tokens 8c5749e16f23aa5e6db2ef9fd2e94b15257c282b990605657836471a15a0af76#0
 ```
 
 # Deploy files
