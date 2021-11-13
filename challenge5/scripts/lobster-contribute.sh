@@ -2,7 +2,7 @@
 
 # arguments:
 #   utxo (wallet)
-#   utxo (lobster)
+#   utxo (lobster script)
 #   wallet address file
 #   signinig key file
 #   old counter
@@ -17,14 +17,14 @@ nftPolicyFile="nft-mint-policy.plutus"
 nftPolicyId=$(./policyid.sh $nftPolicyFile)
 otherPolicyFile="other-mint-policy.plutus"
 otherPolicyId=$(./policyid.sh $otherPolicyFile)
-nftValue="1 $nftPolicyId.LobsterNFT"
-counterValue="$6 $otherPolicyId.LobsterCounter"
+nftValue="1 $nftPolicyId.4c6f62737465724e4654" # LobsterNFT
+counterValue="$6 $otherPolicyId.4c6f6273746572436f756e746572" # LobsterCounter
 newVotes=$(($7+1))
-votesValue="$newVotes $otherPolicyId.LobsterVotes"
-increaseValue="$(($6-$5)) $otherPolicyId.LobsterCounter + 1 $otherPolicyId.LobsterVotes"
+votesValue="$newVotes $otherPolicyId.4c6f6273746572566f746573" # LobsterVotes
+increaseValue="$(($6-$5)) $otherPolicyId.4c6f6273746572436f756e746572 + 1 $otherPolicyId.4c6f6273746572566f746573"
 walletAddr=$(cat $3)
 scriptFile=lobster.plutus
-scriptAddr=$(./mainnet-script-address.sh $scriptFile)
+scriptAddr=$(./testnet-script-address.sh $scriptFile)
 
 echo "wallet utxo: $1"
 echo "script utxo: $2"
@@ -46,16 +46,12 @@ echo "new counter: $6"
 echo "increaseValue: $increaseValue"
 echo "old votes: $7"
 echo "new votes: $newVotes"
+echo "node.socket: $CARDANO_NODE_SOCKET_PATH"
 echo
 
-echo "querying protocol parameters"
-./mainnet-query-protocol-parameters.sh
-
-echo
-
-./cardano-cli transaction build \
+cardano-cli transaction build \
     --alonzo-era \
-    --mainnet \
+    --testnet-magic 1097911063 \
     --tx-in $1 \
     --tx-in $2 \
     --tx-in-script-file $scriptFile \
@@ -68,23 +64,23 @@ echo
     --mint-script-file $otherPolicyFile \
     --mint-redeemer-value [] \
     --change-address $walletAddr \
-    --protocol-params-file mainnet-protocol-parameters.json \
+    --protocol-params-file testnet-protocol-parameters.json \
     --out-file $bodyFile
 
-echo "saved transaction to $bodyFile"
+# echo "saved transaction to $bodyFile"
 
-./cardano-cli transaction sign \
-    --tx-body-file $bodyFile \
-    --signing-key-file $4 \
-    --mainnet \
-    --out-file $outFile
+# cardano-cli transaction sign \
+#     --tx-body-file $bodyFile \
+#     --signing-key-file $4 \
+#     --testnet-magic 1097911063 \
+#     --out-file $outFile
 
-echo "signed transaction and saved as $outFile"
+# echo "signed transaction and saved as $outFile"
 
-./cardano-cli transaction submit \
-    --mainnet \
-    --tx-file $outFile
+# cardano-cli transaction submit \
+#     --testnet-magic 1097911063 \
+#     --tx-file $outFile
 
-echo "submitted transaction"
+# echo "submitted transaction"
 
-echo
+# echo

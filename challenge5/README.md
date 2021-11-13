@@ -42,7 +42,30 @@ cabal run plutus-lobster-tokens 14865d34c6141f445dde0965f1ef79b31de2ca4e909d2897
 #   wallet address file: ../../common/payment4.addr
 #   signing key file ../../common/payment4.skey
 ./lobster-deploy.sh 0f08ced0888de4d7c4319096f719eaece0c60203a041ac592ea49dac6fbfc426#1 0f08ced0888de4d7c4319096f719eaece0c60203a041ac592ea49dac6fbfc426#0 ../../common/payment4.addr ../../common/payment4.skey
+```
 
+# Contribution (Test functionalities)
+```bash
+# querying protocol parameters
+./testnet-query-protocol-parameters.sh
+
+
+# arguments:
+#   utxo collateral (ADA only)
+#       e711d764206221bf338ffff9a414b9425c8eb46bf4d2e54db5ab2ba8d412f64a#0 (payment4)    
+#   utxo that contains LobsterNFT
+#       fa9e752f989018915bdf732fc5909190a2fb497c18282bd11cada9b555d7809a#0 (utxo that contain)
+#   wallet address file
+#       ../../common/payment4.addr
+#   signinig key file
+#       ../../common/payment4.skey
+#   old counter
+#       0
+#   new counter
+#       2
+#   old votes
+#       0
+e711d764206221bf338ffff9a414b9425c8eb46bf4d2e54db5ab2ba8d412f64a
 ```
 
 TODO: sửa các file shells scripts/lobster* thành testnet
