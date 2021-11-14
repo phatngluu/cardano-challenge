@@ -8,9 +8,6 @@
 #   old counter
 #   new counter
 #   old votes
-#   node socket path
-
-export CARDANO_NODE_SOCKET_PATH=node.socket
 
 bodyFile=lobster-tx-body.03
 outFile=lobster-tx.03
@@ -47,8 +44,6 @@ echo "new counter: $6"
 echo "increaseValue: $increaseValue"
 echo "old votes: $7"
 echo "new votes: $newVotes"
-export CARDANO_NODE_SOCKET_PATH=$8
-echo "node.socket: $CARDANO_NODE_SOCKET_PATH"
 echo
 
 cardano-cli transaction build \

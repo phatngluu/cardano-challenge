@@ -90,5 +90,5 @@ cd scripts
 eb7e3c14d2cd4cb9ee27719e815e564c7972a26b2d5c85d304ba8d26835cef82#0 \
 7d1cc2d524040287d1610a34ad6f46a7b023936881d1f93a4a27cba079b02d34#1 \
 ../../common/payment3.addr ../../common/payment3.skey \
-0 31 0 /home/steven/cardano/db/node.socket
+0 31 0
 ```
