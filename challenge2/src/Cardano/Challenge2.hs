@@ -45,7 +45,7 @@ mkNFTPolicy tn utxo _ ctx = traceIfFalse "UTxO not consumed"   hasUTxO          
         _               -> False
 
 nftTokenName :: TokenName
-nftTokenName = "SporesNFT_1" -- <-- THIS SHOULD BE CHANGE FOR NEW NFT TOKEN
+nftTokenName = "SporesNFT_2" -- <-- THIS SHOULD BE CHANGE FOR NEW NFT TOKEN
 
 nftPolicy :: TxOutRef -> Scripts.MintingPolicy
 nftPolicy utxo = mkMintingPolicyScript $
