@@ -48,12 +48,9 @@ Or, using Cardanoscan blockchain explorer: [addr_test1vqquurd5cglaqfnnusnsfy3w0u
 Token details is shown in Cardanoscan: [fda1b6b487bee2e7f64ecf24d24b1224342484c0195ee1b7b943db50434552433230](https://testnet.cardanoscan.io/token/fda1b6b487bee2e7f64ecf24d24b1224342484c0195ee1b7b943db50434552433230)
 ![](../../cardano-challenge/img/Screen%20Shot%202021-11-14%20at%2012.47.18.png)
 ## Token transfer
-Transfer 10 tokens CERC20 from `payment4` to `payment1`.
+Transfer 1 tokens CERC20 from `payment4` to `payment1`.
 ```bash
 ./transfer-token.sh 0034868a098fe17f59af839df8e03a6e2bec752e210183faaa29d4341f987e0d#1 ../../common/payment4.addr ../../common/payment4.skey ../../common/payment1.addr 1
-
-
-# ./transfer.sh SenderAddress SenderSigningKeyFile TxHash TxIx Funds TotalToken PolicyId TransferTokenAmount
-./transfer.sh "../../common/payment1.addr" "../../common/payment4.addr" "../../common/payment2.skey" 4220a8e5b0cef0e9543001cc3f4c5128726d81376a444316d32c27f3aabb8a0c 1 989640002 9999999 885004fc0e0e6f593878fc61a150ab2672cd04270b7218aae5afc9b8 10
 ```
-See the transaction on explorer: https://testnet.cardanoscan.io/transaction/a6142b7ffe0b6e1e54deaa6977dcf3203d1eec2e438676c08eda3e1593cc050a
+See the transaction on explorer: https://testnet.cardanoscan.io/transaction/72d754e34b70242f266b2e72ec28be8f95037034888d907a7f3a8eec6df4c5d9
+![](../../cardano-challenge/img/Screen%20Shot%202021-11-14%20at%2014.00.46.png)
