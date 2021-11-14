@@ -11,11 +11,11 @@ This is a challenge that extends the original ![Lobster Challenge](https://githu
 https://www.rapidtables.com/convert/number/ascii-to-hex.html
 ```bash
 # LobsterPrimeNFT
-4c6f62737465725072696d654e4654
+5072696d654e4654
 # LobsterPrimeCounter
-4c6f62737465725072696d65436f756e746572
+5072696d65436f756e746572
 # LobsterPrimeVotes
-4c6f62737465725072696d65566f746573
+5072696d65566f746573
 ```
 
 At the root folder:
@@ -61,9 +61,9 @@ cd scripts
 
 # arguments:
 #   utxo collateral (ADA only)
-#       e711d764206221bf338ffff9a414b9425c8eb46bf4d2e54db5ab2ba8d412f64a#0 (payment4)    
+#       940eeb785519d4add326e259d61d2dacc96420e7ba1daf0503278091a4fa33fa#0 (payment4)    
 #   utxo that contains LobsterNFT
-#       e711d764206221bf338ffff9a414b9425c8eb46bf4d2e54db5ab2ba8d412f64a#1 (utxo that contain)
+#       7d1cc2d524040287d1610a34ad6f46a7b023936881d1f93a4a27cba079b02d34#1 (utxo that contain)
 #   wallet address file
 #       ../../common/payment4.addr
 #   signinig key file
@@ -76,5 +76,5 @@ cd scripts
 #       0
 #   node socket pat
 #       /home/steven/cardano/db/node.socket
-./lobster-contribute.sh e711d764206221bf338ffff9a414b9425c8eb46bf4d2e54db5ab2ba8d412f64a#0 e711d764206221bf338ffff9a414b9425c8eb46bf4d2e54db5ab2ba8d412f64a#1 ../../common/payment4.addr ../../common/payment4.skey 0 2 0 /home/steven/cardano/db/node.socket
+./lobster-contribute.sh eb7e3c14d2cd4cb9ee27719e815e564c7972a26b2d5c85d304ba8d26835cef82#0 7d1cc2d524040287d1610a34ad6f46a7b023936881d1f93a4a27cba079b02d34#1 ../../common/payment3.addr ../../common/payment3.skey 0 31 0 /home/steven/cardano/db/node.socket
 ```
