@@ -5,14 +5,16 @@
 #   sender wallet address file
 #   sender signing key file
 #   receiver wallet address file
+#   token name
 
 bodyFile=transfer-tx-body.01
 outFile=transfer-tx.01
 tokenPolicyFile="nft-mint-policy.plutus"
 tokenPolicyId=$(./policyid.sh $tokenPolicyFile)
+tokenName=$5
 # Serialize SporesNFT_1 to hexadecimal: 53706f7265734e46545f31
 # https://www.rapidtables.com/convert/number/ascii-to-hex.html
-value="1 $tokenPolicyId.53706f7265734e46545f31"
+value="1 $tokenPolicyId.$tokenName"
 senderWalletAddr=$(cat $2)
 receiverWalletAddr=$(cat $4)
 
@@ -32,7 +34,7 @@ cardano-cli transaction build \
     --alonzo-era \
     --testnet-magic 1097911063 \
     --tx-in $1 \
-    --tx-out $receiverWalletAddr+1344798+"$value" \
+    --tx-out $receiverWalletAddr+1379280+"$value" \
     --change-address $senderWalletAddr \
     --protocol-params-file testnet-protocol-parameters.json \
     --out-file $bodyFile
