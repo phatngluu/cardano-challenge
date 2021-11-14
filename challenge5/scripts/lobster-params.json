@@ -1,0 +1,11 @@
+{
+    "constructor": 0,
+    "fields": [
+        { "int": 1999 },
+        { "string": "LobsterNFT" },
+        { "string": "LobsterCounter" },
+        { "string": "LobsterVotes" },
+        { "int": 1219 },
+        { "int": 500 }
+    ]
+}

@@ -1,5 +1,5 @@
 # Challenge description
-This is a challenge that extends the original ![Lobster Challenge](https://github.com/input-output-hk/lobster-challenge)
+This is a challenge that extends the original [Lobster Challenge](https://github.com/input-output-hk/lobster-challenge)
 
 # Build Plutus Haskell code
 - Clone plutus repo. Checkout tag: alonzo/rc-2

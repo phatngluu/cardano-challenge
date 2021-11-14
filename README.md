@@ -3,7 +3,45 @@ This Github repo is a submission for this challenge: https://github.com/Spores-L
 
 # Prerequisites
 - `cardano-node` and `cardano-wallet` services are required to query, deploy scripts and submit transactions on Cardano network. At the root directory of this repo, run following shell command to spin up those services: `NETWORK=testnet docker-compose up`.
-- Prepare an address and get fund for it.
+- When services are up and running. Run this to restore the test wallet:
+```bash
+# Restore wallet
+curl --request POST \
+  --url http://localhost:8090/v2/wallets \
+  --header 'Content-type: application/json' \
+  --data '{
+	"name": "TestWallet",
+	"mnemonic_sentence": [
+		"game",
+		"add",
+		"this",
+		"affair",
+		"victory",
+		"domain",
+		"ribbon",
+		"slender",
+		"bounce",
+		"coast",
+		"shuffle",
+		"apology",
+		"course",
+		"ability",
+		"silver",
+		"lamp",
+		"palace",
+		"ice",
+		"despair",
+		"detect",
+		"auction",
+		"blanket",
+		"vast",
+		"bounce"
+	],
+	"passphrase": "passTestWallet"
+}'
+
+# Create signing key for the wallet
+```
 
 # Fetch the fee tariff
 ```bash
