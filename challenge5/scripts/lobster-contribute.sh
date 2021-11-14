@@ -46,6 +46,9 @@ echo "old votes: $7"
 echo "new votes: $newVotes"
 echo
 
+echo "querying protocol parameters"
+./testnet-query-protocol-parameters.sh
+
 cardano-cli transaction build \
     --alonzo-era \
     --testnet-magic 1097911063 \
