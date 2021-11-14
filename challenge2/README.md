@@ -61,3 +61,6 @@ Transfer `SporesNFT_2` token from `payment4` to `payment1`.
 ```bash
 ./transfer-token.sh fc5efa5ded05ac3737085c65a205cb39a4ba0bde171c48531b616f04ddfe9180#1 ../../common/payment4.addr ../../common/payment4.skey ../../common/payment1.addr 53706f7265734e46545f32
 ```
+
+https://testnet.cardanoscan.io/transaction/9409b1a6654f21f5b67f0343a5c0401b86ed9f64b28021b6f791fb07409bd08a
+![](../../cardano-challenge/img/Screen%20Shot%202021-11-14%20at%2019.17.46.png)
