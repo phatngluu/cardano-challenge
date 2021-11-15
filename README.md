@@ -2,46 +2,8 @@
 This Github repo is a submission for this challenge: https://github.com/Spores-Labs/CardanoChallenge
 
 # Prerequisites
-- `cardano-node` and `cardano-wallet` services are required to query, deploy scripts and submit transactions on Cardano network. At the root directory of this repo, run following shell command to spin up those services: `NETWORK=testnet docker-compose up`.
-- When services are up and running. Run this to restore the test wallet:
-```bash
-# Restore wallet
-curl --request POST \
-  --url http://localhost:8090/v2/wallets \
-  --header 'Content-type: application/json' \
-  --data '{
-	"name": "TestWallet",
-	"mnemonic_sentence": [
-		"game",
-		"add",
-		"this",
-		"affair",
-		"victory",
-		"domain",
-		"ribbon",
-		"slender",
-		"bounce",
-		"coast",
-		"shuffle",
-		"apology",
-		"course",
-		"ability",
-		"silver",
-		"lamp",
-		"palace",
-		"ice",
-		"despair",
-		"detect",
-		"auction",
-		"blanket",
-		"vast",
-		"bounce"
-	],
-	"passphrase": "passTestWallet"
-}'
-
-# Create signing key for the wallet
-```
+- `cardano-node` and `cardano-wallet` services are required to query, deploy scripts and submit transactions on Cardano network. At the root directory of this repo, run following shell command to spin up those services: `NETWORK=testnet docker-compose up`. It's the quickest way. However, using Docker containers isn't useful for submitting transactions.
+- The idealest way is to have cardano-node installed locally. Please read here: https://phatngluu.notion.site/Install-Cardano-node-304e42f46dd24900bd53f2bdeea81958
 
 # Fetch the fee tariff
 ```bash
@@ -51,7 +13,7 @@ cardano-cli query protocol-parameters \
   --out-file common/protocol.json
 ```
 
-# Generate address
+# Generate wallet address
 - Use `cardano-cli` to create new address. Suppose you're at
 ```bash
 # Directory `cardano-challenge`
